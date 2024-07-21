@@ -1,5 +1,6 @@
 "use client";
 
+import { Link } from "locales/navigation";
 import { useTranslations } from "next-intl";
 import React, { FC } from "react";
 
@@ -8,7 +9,7 @@ const Footer: FC = () => {
 
   return (
     <footer className="mx-auto w-fit px-6 py-12 md:flex md:items-center md:justify-between lg:px-8">
-      <div className="mt-8 flex flex-col items-center gap-1 text-xs leading-5 text-gray-500 dark:text-gray-100 md:order-1 md:mt-0">
+      <div className="mt-8 flex flex-col items-center gap-1 text-xs leading-5 text-gray-500 md:order-1 md:mt-0 dark:text-gray-100">
         <p>{t("Footer.copyright")}</p>
         <div className="flex flex-wrap justify-center gap-3 whitespace-nowrap">
           <p className="text-gray-600 dark:text-gray-300">
@@ -43,6 +44,12 @@ const Footer: FC = () => {
         <p className="text-center text-gray-600 dark:text-gray-300">
           {t("Footer.address")}
         </p>
+        <Link
+          href="/terms/privacy"
+          className="font-medium text-twilight dark:text-blossom"
+        >
+          {t("Footer.privacyPolicy")}
+        </Link>
       </div>
     </footer>
   );
