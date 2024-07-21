@@ -44,9 +44,9 @@ const AuthState: FC = async () => {
               {t("common.signin")}
             </Link>
           </li>
-          <li>
+          <li className="hidden sm:block">
             <Link
-              className="group relative w-full text-slate-300 transition duration-150 ease-in-out [background:linear-gradient(theme(colors.slate.900),_theme(colors.slate.900))_padding-box,_conic-gradient(theme(colors.slate.400),_theme(colors.slate.700)_25%,_theme(colors.slate.700)_75%,_theme(colors.slate.400)_100%)_border-box] before:pointer-events-none before:absolute before:inset-0 before:rounded-full before:bg-slate-800/30 hover:text-white"
+              className="whitespace-nowrap text-sm font-medium text-slate-300 transition duration-150 ease-in-out hover:text-white"
               href="/signup"
             >
               {t("common.signup")}

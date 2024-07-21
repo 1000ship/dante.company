@@ -8,7 +8,7 @@ const Header: FC = async () => {
   const pathname: string = "/";
 
   return (
-    <div className="fixed inset-x-0 top-0 z-header flex items-center justify-between px-4 pt-2 text-black md:px-6 md:pt-4 dark:text-white">
+    <div className="fixed inset-x-0 top-0 z-header flex items-start justify-between px-4 pt-2 text-black md:px-6 md:pt-4 dark:text-white">
       <div className="flex gap-6">
         <Link href="/" className="hidden font-bold tracking-tighter md:block">
           DANTE COMPANY
@@ -35,7 +35,7 @@ const Header: FC = async () => {
         </ul>
       </div>
 
-      <div className="flex gap-6">
+      <div className="flex gap-2 md:gap-6">
         {/* Language Selector */}
         <LanguageSelector />
 
