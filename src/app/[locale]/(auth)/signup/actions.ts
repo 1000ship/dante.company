@@ -11,7 +11,6 @@ export async function register(
   prevState: string | undefined,
   formData: FormData
 ) {
-  console.debug("Signup action", "validating...");
   const { success, data, error } = zfd
     .formData({
       email: z
@@ -37,7 +36,6 @@ export async function register(
     })
     .safeParse(formData);
 
-  console.debug("Signup action", "validation result", success);
   if (success) {
     try {
       await prisma.$transaction(async ($tx) => {
@@ -62,7 +60,6 @@ export async function register(
       return "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.";
     }
 
-    console.debug("Signup action", "redirecting to signin");
     redirect("/signin");
   } else {
     return error.issues[0].message;
