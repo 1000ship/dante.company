@@ -1,17 +1,17 @@
 "use server";
 
-import { genSaltSync, hashSync } from "bcryptjs";
-import { AUTH_SALT_ROUND } from "constants/env";
 import { AlreadyExistException } from "errors/prisma";
 import { redirect } from "next/navigation";
 import { prisma } from "utils/prisma";
 import { z } from "zod";
 import { zfd } from "zod-form-data";
+import { hashPassword } from "../utils";
 
 export async function register(
   prevState: string | undefined,
   formData: FormData
 ) {
+  console.debug("Signup action", "validating...");
   const { success, data, error } = zfd
     .formData({
       email: z
@@ -37,19 +37,21 @@ export async function register(
     })
     .safeParse(formData);
 
+  console.debug("Signup action", "validation result", success);
   if (success) {
     try {
-      const salt = genSaltSync(AUTH_SALT_ROUND);
       await prisma.$transaction(async ($tx) => {
         const existUser = await $tx.user.findUnique({
           where: { email: data.email },
         });
         if (existUser) throw new AlreadyExistException("email");
+        const { salt, hash } = await hashPassword(data.password);
         await $tx.user.create({
           data: {
             email: data.email,
             name: data.name,
-            password: hashSync(data.password, salt),
+            password: hash,
+            passwordSalt: salt,
           },
         });
       });
@@ -60,6 +62,7 @@ export async function register(
       return "회원가입 중 오류가 발생했습니다. 다시 시도해주세요.";
     }
 
+    console.debug("Signup action", "redirecting to signin");
     redirect("/signin");
   } else {
     return error.issues[0].message;

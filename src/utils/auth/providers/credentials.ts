@@ -1,4 +1,4 @@
-import { compareSync } from "bcryptjs";
+import { verifyPassword } from "app/[locale]/(auth)/utils";
 import Credentials from "next-auth/providers/credentials";
 import { prisma } from "utils/prisma";
 import { z } from "zod";
@@ -17,8 +17,12 @@ const CredentialsProvider = Credentials({
         where: { email },
         include: { accounts: { where: { provider: "" } } },
       });
-      if (user?.password) {
-        const isValidPassword = compareSync(password, user.password);
+      if (user?.password && user.passwordSalt) {
+        const isValidPassword = await verifyPassword(
+          user.password,
+          user.passwordSalt,
+          password
+        );
         if (isValidPassword) return user;
       }
     }
