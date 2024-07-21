@@ -50,10 +50,10 @@ export const authConfig = {
       const isLoggedIn = !!auth?.user;
       const { pathname } = nextUrl;
 
-      // Summarize page
-      if (pathname.match(/^\/videos\/[A-Za-z0-9_-]+\/summarize$/)) {
-        return isLoggedIn;
-      }
+      // Restrict access to specific routes
+      // if (pathname.match(/^\/videos\/[A-Za-z0-9_-]+\/summarize$/)) {
+      //   return isLoggedIn;
+      // }
 
       return true;
     },
