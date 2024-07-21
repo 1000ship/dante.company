@@ -30,6 +30,7 @@
     "next-auth": "^5.0.0-beta.17",
     "next-intl": "^3.3.2",
     "postcss": "8.4.32",
+    "prisma": "^5.17.0",
     "react": "18.2.0",
     "react-dom": "18.2.0",
     "react-hook-form": "^7.49.2",
@@ -48,7 +49,6 @@
     "@types/moment": "^2.13.0",
     "@types/react-query": "^1.2.9",
     "eslint-plugin-tailwindcss": "^3.13.0",
-    "prettier-plugin-tailwindcss": "^0.6.5",
-    "prisma": "^5.17.0"
+    "prettier-plugin-tailwindcss": "^0.6.5"
   }
 }
