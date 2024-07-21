@@ -4,25 +4,30 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
+    "prebuild": "prisma generate",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
   },
   "homepage": "https://dante.company/",
   "dependencies": {
+    "@auth/prisma-adapter": "^2.4.1",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
+    "@prisma/client": "^5.17.0",
     "@types/node": "20.10.4",
     "@types/react": "18.2.45",
     "@types/react-dom": "18.2.18",
     "autoprefixer": "10.4.16",
     "axios": "^1.6.2",
+    "bcryptjs": "^2.4.3",
     "classnames": "^2.3.2",
     "eslint": "8.56.0",
     "eslint-config-next": "14.0.4",
     "framer-motion": "^10.16.16",
     "moment": "^2.29.4",
     "next": "14.0.4",
+    "next-auth": "^5.0.0-beta.17",
     "next-intl": "^3.3.2",
     "postcss": "8.4.32",
     "react": "18.2.0",
@@ -31,14 +36,19 @@
     "react-query": "^3.39.3",
     "react-spinners": "^0.13.8",
     "styled-components": "^6.1.1",
-    "tailwindcss": "3.3.6",
-    "typescript": "5.3.3"
+    "tailwindcss": "3.4.3",
+    "typescript": "5.3.3",
+    "zod": "^3.23.8",
+    "zod-form-data": "^2.0.2"
   },
   "devDependencies": {
     "@svgr/webpack": "^8.1.0",
     "@types/axios": "^0.14.0",
+    "@types/bcryptjs": "^2.4.6",
     "@types/moment": "^2.13.0",
     "@types/react-query": "^1.2.9",
-    "eslint-plugin-tailwindcss": "^3.13.0"
+    "eslint-plugin-tailwindcss": "^3.13.0",
+    "prettier-plugin-tailwindcss": "^0.6.5",
+    "prisma": "^5.17.0"
   }
 }

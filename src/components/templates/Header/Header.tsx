@@ -1,25 +1,14 @@
-"use client";
-
 import { ArrowTopRightOnSquareIcon } from "@heroicons/react/20/solid";
-import { useLocale } from "next-intl";
-import { FC, useCallback } from "react";
-import { Locale } from "../../../locales";
-import { Link, usePathname, useRouter } from "../../../locales/navigation";
+import { Link } from "locales/navigation";
+import { FC } from "react";
+import AuthState from "./AuthState";
+import LanguageSelector from "./LanguageSelector";
 
-const Header: FC = () => {
-  const locale = useLocale();
-  const pathname = usePathname();
-  const router = useRouter();
-
-  const handleLanguageChange = useCallback(
-    (targetLocale: Locale) => {
-      router.replace(pathname, { locale: targetLocale });
-    },
-    [pathname, router]
-  );
+const Header: FC = async () => {
+  const pathname: string = "/";
 
   return (
-    <div className="fixed inset-x-0 top-0 z-header flex items-center justify-between px-4 pt-2 text-black dark:text-white md:px-6 md:pt-4">
+    <div className="fixed inset-x-0 top-0 z-header flex items-center justify-between px-4 pt-2 text-black md:px-6 md:pt-4 dark:text-white">
       <div className="flex gap-6">
         <Link href="/" className="hidden font-bold tracking-tighter md:block">
           DANTE COMPANY
@@ -45,20 +34,13 @@ const Header: FC = () => {
           </li>
         </ul>
       </div>
-      <div>
-        <label htmlFor="language" className="sr-only">
-          Language
-        </label>
-        <select
-          id="language"
-          name="language"
-          className="h-full appearance-none rounded-md border-0 bg-transparent p-2 text-right text-gray-500 outline-none dark:text-gray-400 sm:text-sm"
-          defaultValue={locale}
-          onChange={(e) => handleLanguageChange(e.target.value as Locale)}
-        >
-          <option value="en">English</option>
-          <option value="ko">🇰🇷 한국어</option>
-        </select>
+
+      <div className="flex gap-6">
+        {/* Language Selector */}
+        <LanguageSelector />
+
+        {/* Auth State */}
+        <AuthState />
       </div>
     </div>
   );

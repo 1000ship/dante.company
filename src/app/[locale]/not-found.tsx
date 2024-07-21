@@ -1,19 +1,16 @@
-import { fallbackLocale } from "../../locales";
+import { useTranslations } from "locales/server";
+import { getLocale } from "next-intl/server";
 import { Link } from "../../locales/navigation";
-import { getLocale, getTranslations } from "next-intl/server";
 
 const NotFoundPage = async () => {
   const locale = await getLocale();
-  const t = await getTranslations({
-    locale: locale ?? fallbackLocale,
-    namespace: "common",
-  });
+  const t = await useTranslations("common");
 
   return (
-    <main className="grid min-h-full place-items-center bg-white px-6 py-24 dark:bg-black sm:py-32 lg:px-8">
+    <main className="grid min-h-full place-items-center bg-white px-6 py-24 sm:py-32 lg:px-8 dark:bg-black">
       <div className="text-center">
         <p className="text-base font-semibold text-blossom-600">404</p>
-        <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 dark:text-gray-100 sm:text-5xl">
+        <h1 className="mt-4 text-3xl font-bold tracking-tight text-gray-900 sm:text-5xl dark:text-gray-100">
           {t("404.title")}
         </h1>
         <p className="mt-6 text-base leading-7 text-gray-600 dark:text-gray-300">
