@@ -1,4 +1,4 @@
-import { Metadata } from "next";
+import { Metadata, Viewport } from "next";
 import { getTranslations } from "next-intl/server";
 import { Noto_Sans } from "next/font/google";
 import { fallbackLocale } from "../locales/index";
@@ -16,10 +16,19 @@ interface Props {
   children: React.ReactNode;
 }
 
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1.0,
+  themeColor: [
+    { color: "#ffffff", media: "(prefers-color-scheme: light)" },
+    { color: "#000000", media: "(prefers-color-scheme: dark)" },
+  ],
+};
+
 export async function generateMetadata({
   params: { locale = fallbackLocale },
 }) {
-  const t = await getTranslations({ locale, namespace: "common" });
+  const t = await getTranslations({ locale, namespace: "common" }); // useTranslations("common")
 
   return {
     title: {
@@ -27,11 +36,6 @@ export async function generateMetadata({
       default: t("metadata.title"),
     },
     description: t("metadata.description"),
-    viewport: "width=device-width, initial-scale=1.0",
-    themeColor: [
-      { color: "#ffffff", media: "(prefers-color-scheme: light)" },
-      { color: "#000000", media: "(prefers-color-scheme: dark)" },
-    ],
     alternates: {
       canonical: "https://dante.company",
       languages: {
@@ -55,6 +59,7 @@ export async function generateMetadata({
         },
       ],
     },
+    metadataBase: new URL("https://dante.company"),
   } as Metadata;
 }
 
