@@ -1,0 +1,129 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider      = "prisma-client-js"
+  binaryTargets = ["native", "rhel-openssl-1.0.x"] // For serverless
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("POSTGRES_URL")
+}
+
+// Auth
+model User {
+  id            String    @id @default(cuid())
+  name          String?
+  email         String    @unique
+  emailVerified DateTime?
+  password      String?
+  image         String?
+  accounts      Account[]
+  sessions      Session[]
+  createdAt     DateTime  @default(now())
+  updatedAt     DateTime  @updatedAt
+}
+
+model Account {
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  refresh_token     String?
+  access_token      String?
+  expires_at        Int?
+  token_type        String?
+  scope             String?
+  id_token          String?
+  session_state     String?
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+  user              User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@id([provider, providerAccountId])
+}
+
+model Session {
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model VerificationToken {
+  identifier String
+  token      String
+  expires    DateTime
+
+  @@id([identifier, token])
+}
+
+// Newsletter
+model Newsletter {
+  email      String   @unique
+  verifyCode String
+  locale     String   @default("en")
+  createdAt  DateTime @default(now())
+  updatedAt  DateTime @updatedAt
+}
+
+// Blog
+model BlogPost {
+  id          String    @default(uuid())
+  locale      String    @default("en")
+  slug        String
+  title       String
+  description String?   @db.Text
+  body        String    @db.Text
+  views       Int       @default(0)
+  published   Boolean   @default(false)
+  publishedAt DateTime?
+  updatedAt   DateTime  @updatedAt
+  createdAt   DateTime  @default(now())
+
+  @@id([id, locale])
+  @@unique([slug, locale])
+  @@index([id], name: "id", type: Hash)
+  @@index([slug], name: "slug", type: Hash)
+  @@index([locale], name: "locale", type: Hash)
+}
+
+// Dante Games
+model GameUser {
+  id        String   @id @default(uuid())
+  name      String
+  token     String   @unique
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  pencilPickerScores PencilPickerScore[]
+  pencilPickerGroup  PencilPickerGroup[]
+}
+
+// Pencil Picker
+model PencilPickerGroup {
+  id          String   @id @default(uuid())
+  name        String
+  sumOfScores Int      @default(0)
+  recordCount Int      @default(0)
+  creatorId   String
+  creator     GameUser @relation(fields: [creatorId], references: [id], onDelete: Cascade)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  scores PencilPickerScore[]
+}
+
+model PencilPickerScore {
+  id        String             @id @default(uuid())
+  score     Int
+  groupId   String?
+  group     PencilPickerGroup? @relation(fields: [groupId], references: [id], onDelete: Cascade)
+  userId    String
+  user      GameUser           @relation(fields: [userId], references: [id], onDelete: Cascade)
+  createdAt DateTime           @default(now())
+  updatedAt DateTime           @updatedAt
+}
