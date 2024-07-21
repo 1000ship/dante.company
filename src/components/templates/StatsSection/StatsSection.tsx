@@ -45,7 +45,7 @@ const StatsSection: FC = () => {
             <AnimatedTitle align="center">
               {t("StatsSection.title")}
             </AnimatedTitle>
-            <p className="mx-auto mt-4 break-keep text-sm leading-6 text-gray-600 dark:text-gray-300 md:max-w-[80%] md:text-base">
+            <p className="mx-auto mt-4 break-keep text-sm leading-6 text-gray-600 md:max-w-[80%] md:text-base dark:text-gray-300">
               {t("StatsSection.descriptionPart1")}
               <br />
               {t("StatsSection.descriptionPart2")}

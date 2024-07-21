@@ -25,7 +25,7 @@ const LanguageSelector = () => {
       <select
         id="language"
         name="language"
-        className="h-full appearance-none rounded-md border-0 bg-transparent p-2 text-right text-gray-500 outline-none dark:text-gray-400 sm:text-sm"
+        className="h-full appearance-none rounded-md border-0 bg-transparent p-2 text-right text-gray-500 outline-none sm:text-sm dark:text-gray-400"
         defaultValue={locale}
         onChange={(e) => handleLanguageChange(e.target.value as Locale)}
       >

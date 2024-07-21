@@ -25,10 +25,10 @@ const WelcomeSection: FC = () => {
               <AnimatedTitle>
                 {t("WelcomeSection.welcomeMessage")}
               </AnimatedTitle>
-              <p className="relative mt-6 break-keep text-lg leading-8 text-gray-600 dark:text-gray-300 sm:max-w-md lg:max-w-none">
+              <p className="relative mt-6 break-keep text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none dark:text-gray-300">
                 {t("WelcomeSection.description1")}
               </p>
-              <p className="relative mt-6 break-keep text-lg leading-8 text-gray-600 dark:text-gray-300 sm:max-w-md lg:max-w-none">
+              <p className="relative mt-6 break-keep text-lg leading-8 text-gray-600 sm:max-w-md lg:max-w-none dark:text-gray-300">
                 {t("WelcomeSection.description2")}
               </p>
             </div>

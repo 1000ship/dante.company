@@ -60,7 +60,7 @@ const NewsletterSection: FC = () => {
 
   return (
     <div className="mx-auto max-w-7xl px-4 py-24 sm:px-6 lg:px-8">
-      <h2 className="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-black dark:text-white sm:text-4xl">
+      <h2 className="mx-auto max-w-2xl text-center text-3xl font-bold tracking-tight text-black sm:text-4xl dark:text-white">
         {t("NewsletterSection.heading")}
       </h2>
       <p className="mx-auto mt-2 max-w-xl text-center text-lg leading-8 text-gray-700 dark:text-gray-300">
@@ -127,7 +127,7 @@ const NewsletterSection: FC = () => {
                   type="string"
                   autoComplete="confirmation-code"
                   required
-                  className="min-w-0 flex-auto rounded-md border-0 bg-black/5 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-black/10 focus:ring-2 focus:ring-inset focus:ring-black disabled:opacity-50 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-white sm:text-sm sm:leading-6"
+                  className="min-w-0 flex-auto rounded-md border-0 bg-black/5 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-black/10 focus:ring-2 focus:ring-inset focus:ring-black disabled:opacity-50 sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-white"
                   placeholder={t(
                     "NewsletterSection.confirmationCodePlaceholder"
                   )}
@@ -180,7 +180,7 @@ const NewsletterSection: FC = () => {
                   })}
                   id="email-address"
                   required
-                  className="min-w-0 flex-auto rounded-md border-0 bg-black/5 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-black/10 focus:ring-2 focus:ring-inset focus:ring-black disabled:opacity-50 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-white sm:text-sm sm:leading-6"
+                  className="min-w-0 flex-auto rounded-md border-0 bg-black/5 px-3.5 py-2 text-black shadow-sm ring-1 ring-inset ring-black/10 focus:ring-2 focus:ring-inset focus:ring-black disabled:opacity-50 sm:text-sm sm:leading-6 dark:bg-white/5 dark:text-white dark:ring-white/10 dark:focus:ring-white"
                   placeholder={t("NewsletterSection.emailPlaceholder")}
                   size={30}
                   minLength={5}
